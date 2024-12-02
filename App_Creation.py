@@ -55,7 +55,7 @@ st.text("Please choose a country to explore its population data and geographical
 # Dropdown menu for selecting a country
 try:
     # Load from a CSV file (replace 'path_to_file.csv' with your file path)
-    population_data = pd.read_csv("D:\\Users\\ALIENWARE\\Downloads\\World_Population_Data.csv", encoding="ISO-8859-1")
+    population_data = pd.read_csv("C:\\Users\\FMD GEO-SERVICES\\Desktop\\World_Population_Data.csv", encoding="ISO-8859-1")
 except FileNotFoundError:
     st.error("Error: Data file not found. Please provide a valid path.")
     st.stop()
@@ -64,9 +64,8 @@ except Exception as e:
     st.stop()
 country_list = population_data["Country/Territory"].unique()
 selected_country = st.selectbox(
-"Select a country",
-["Type country's name here"] + list(country_list)
-)
+        "Select a country", ["Type country's name here"] + list(country_list)
+            )
 
 # Creating two columns
 col1, col2 = st.columns([1, 1])
