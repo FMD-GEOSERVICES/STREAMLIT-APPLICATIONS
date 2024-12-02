@@ -55,7 +55,7 @@ if population_data is not None and geodata is not None:
     df = population_data
 
 # Dropdown menu for selecting a country
-country_list = df['Country/Territory'].unique()
+    country_list = df['Country/Territory'].unique()
 selected_country = st.selectbox(
     "Select a country",
     ["Type country's name here"] + df ['Country/Territory'].unique().tolist() 
