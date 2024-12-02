@@ -51,11 +51,17 @@ population_data, geodata = get_data()
 
 # Text widgets
 st.text("Please choose a country to explore its population data and geographical information:")
-# if population_data is not None and geodata is not None:
-
 
 # Dropdown menu for selecting a country
-    # df = population_data
+try:
+    # Load from a CSV file (replace 'path_to_file.csv' with your file path)
+    population_data = pd.read_csv("D:\\Users\\ALIENWARE\\Downloads\\World_Population_Data.csv", encoding="ISO-8859-1")
+except FileNotFoundError:
+    st.error("Error: Data file not found. Please provide a valid path.")
+    st.stop()
+except Exception as e:
+    st.error(f"Error loading data: {e}")
+    st.stop()
 country_list = population_data["Country/Territory"].unique()
 selected_country = st.selectbox(
 "Select a country",
