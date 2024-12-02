@@ -55,10 +55,11 @@ if population_data is not None and geodata is not None:
     df = population_data
 
 # Dropdown menu for selecting a country
+
 csv_file_path = f"D:\\Users\\ALIENWARE\\Downloads\\World_Population_Data.csv"
 df = pd.read_csv(csv_file_path, encoding="ISO-8859-1")
 df = population_data
-country_list = df['Country/Territory'].unique()
+country_list = df["Country/Territory"].unique()
 selected_country = st.selectbox(
     "Select a country",
     ["Type country's name here"] + list(country_list)
