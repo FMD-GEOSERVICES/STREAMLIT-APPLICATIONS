@@ -50,13 +50,13 @@ population_data, geodata = get_data()
     #     st.write("Fetching data...")
 
 # Text widgets
-st.text("Please choose a country to explore its population data and geographical details:")
-if population_data is not None and geodata is not None:
+st.text("Please choose a country to explore its population data and geographical information:")
+# if population_data is not None and geodata is not None:
 
 
 # Dropdown menu for selecting a country
     # df = population_data
-    country_list = population_data["Country/Territory"].unique()
+country_list = population_data["Country/Territory"].unique()
 selected_country = st.selectbox(
 "Select a country",
 ["Type country's name here"] + list(country_list)
