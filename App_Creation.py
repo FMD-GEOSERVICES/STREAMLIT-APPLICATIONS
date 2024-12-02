@@ -55,11 +55,11 @@ if population_data is not None and geodata is not None:
     df = population_data
 
 # Dropdown menu for selecting a country
-    country_list = df['Country/Territory'].unique()
-    selected_country = st.selectbox(
-        "Select a country",
-        ["Type country's name here"] + df ['Country/Territory'].unique().tolist() 
-    )
+country_list = df['Country/Territory'].unique()
+selected_country = st.selectbox(
+    "Select a country",
+    ["Type country's name here"] + df ['Country/Territory'].unique().tolist() 
+)
 
 # Creating two columns
 col1, col2 = st.columns([1, 1])
@@ -85,8 +85,9 @@ else:
 with col2:
     st.subheader("Population by year")
     available_years = [
-            "2022 Population", "2020 Population", "2015 Population", "2010 Population",
-            "2000 Population", "1990 Population", "1980 Population", "1970 Population"
+            "2022 Population", "2020 Population",
+            "2015 Population", "2010 Population",
+            "2000 Population", "1990 Population","1980 Population", "1970 Population"
         ]
     selected_years = st.multiselect(
             "Select year to view population data:",
