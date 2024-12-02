@@ -55,13 +55,11 @@ if population_data is not None and geodata is not None:
     df = population_data
 
 # Dropdown menu for selecting a country
-    country_list = df['Country/Territory'].unique()
-    selected_country = st.selectbox(
+country_list = df['Country/Territory'].unique()
+selected_country = st.selectbox(
     "Select a country",
     ["Type country's name here"] + df ['Country/Territory'].unique().tolist() 
 )
-else:
-    st.write("Please select a country from the dropdown.")
 
 # Creating two columns
 col1, col2 = st.columns([1, 1])
@@ -81,7 +79,7 @@ if selected_country is not None and selected_country != "Type country's name her
         st.write(f"**Population:** {country_data['World Population Percentage']:.2f}%")
         st.write(f"**Density:** {country_data['Density (per km²)']} per km²")
 else:
-    st.warning("Please select a country from the dropdown to proceed.")
+    st.warning("Please select a country from the dropdown list to proceed.")
 
 
 with col2:
