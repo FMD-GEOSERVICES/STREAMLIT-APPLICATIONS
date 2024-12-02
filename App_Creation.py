@@ -59,7 +59,7 @@ df = population_data
 country_list = df['Country/Territory'].unique()
 selected_country = st.selectbox(
     "Select a country",
-    ["Type country's name here"] + df ['Country/Territory'].unique().tolist() 
+    ["Type country's name here"] + list(country_list)
 )
 
 # Creating two columns
