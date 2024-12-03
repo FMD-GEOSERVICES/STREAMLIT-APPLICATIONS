@@ -52,6 +52,11 @@ population_data, geodata = get_data()
 # Text widgets
 st.text("Please choose a country to explore its population data and geographical information:")
 
+# Validating population_data
+if population_data is None or population_data.empty:
+    st.error("Error: Population data is not available. Please check the data source.")
+    st.stop()
+
 # Dropdown menu for selecting a country
 country_list = population_data["Country/Territory"].unique()
 selected_country = st.selectbox(
