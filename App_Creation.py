@@ -48,22 +48,21 @@ def get_data():
 population_data, geodata = get_data()
 
 # Validating population_data
-if population_data is None or population_data.empty:
-    st.error("Error: Population data is not available. Please check the data source.")
-    st.stop()
+if population_data is not None:
 
 # Dropdown menu for selecting a country
-country_list = population_data["Country/Territory"].unique()
-selected_country = st.selectbox(
-        "Select a country", ["Type country's name here"] + list(country_list)
+    country_list = population_data["Country/Territory"].unique()
+    selected_country = st.selectbox(
+        label="Select a country",
+        options=["Type country's name here"] + list(country_list)
             )
-
-    # The condition below will display the population dataframe
+else:
+    st.error("Error: Population data is not available. Please check the data source.")
+    # The condition below will display the population dataframe to confirm if it is not None
     # if population_data is not None:
     #     st.dataframe(population_data)
     # else:
     #     st.write("Fetching data...")
-
 
 # Creating two columns
 col1, col2 = st.columns([1, 1])
