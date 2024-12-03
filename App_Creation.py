@@ -37,16 +37,23 @@ st.text("Please choose a country to explore its population data and geographical
 #Fetching world population data from File directory
 @st.cache_data
 def get_data():
-    csv_file_path = f"C:\\Users\\FMD GEO-SERVICES\\Desktop\\Streamlit_Apps\\World_Population_Data.csv"
-    geojson_path = f"C:\\Users\\FMD GEO-SERVICES\\Desktop\\Streamlit_Apps\\World countries and states.geojson"
     try:
-           df = pd.read_csv(csv_file_path, encoding="ISO-8859-1")
-           gdf = gpd.read_file(geojson_path)
-           return df, gdf
+        csv_file_path = "World_Population_Data.csv"
+        geojson_path = "World countries and states.geojson"
+        df = pd.read_csv(csv_file_path, encoding="ISO-8859-1")
+        gdf = gpd.read_file(geojson_path)
+        return df, gdf
+    except FileNotFoundError:
+        st.error("Error: File not found.")
+        return None, None
     except Exception as e:
-            st.error(f"Error loading data: {e}")
-            return None, None
+        st.error(f"Error loading data: {e}")
+        return None, None
 population_data, geodata = get_data()
+
+if population_data is None or geodata is None:
+    st.error("Data is not loaded. Please check file paths or upload the required files.")
+    st.stop()
 
 # Validating population_data
 if population_data is not None:
@@ -64,7 +71,6 @@ else:
     #     st.dataframe(population_data)
     # else:
     #     st.write("Fetching data...")
-
 
 if selected_country is not None and selected_country != "Type country's name here":
 
@@ -96,7 +102,8 @@ with col2:
     available_years = [
             "2022 Population", "2020 Population",
             "2015 Population", "2010 Population",
-            "2000 Population", "1990 Population","1980 Population", "1970 Population"
+            "2000 Population", "1990 Population",
+            "1980 Population", "1970 Population"
         ]
     selected_years = st.multiselect(
             "Select year to view population data:",
