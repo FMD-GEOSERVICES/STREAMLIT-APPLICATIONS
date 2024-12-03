@@ -67,13 +67,13 @@ else:
 # Creating two columns
 col1, col2 = st.columns([1, 1])
 
-if selected_country is not None and selected_country != "Type country's name here":
+# if selected_country is not None and selected_country != "Type country's name here":
 
 # Filtering data for the selected country
-    country_data = population_data[population_data["Country/Territory"] == selected_country].iloc[0]
+country_data = population_data[population_data["Country/Territory"] == selected_country].iloc[0]
     
 # Column 1: Country Statistics
-    with col1:
+with col1:
         st.subheader("Country's Statistics")
         st.write(f"**Country:** {country_data['Country/Territory']}")
         st.write(f"**Continent:** {country_data['Continent']}")
@@ -81,8 +81,8 @@ if selected_country is not None and selected_country != "Type country's name her
         st.write(f"**Area:** {country_data['Area (km²)']} km²")
         st.write(f"**Population:** {country_data['World Population Percentage']:.2f}%")
         st.write(f"**Density:** {country_data['Density (per km²)']} per km²")
-else:
-    st.warning("Please select a country from the dropdown list to proceed.")
+# else:
+#     st.warning("Please select a country from the dropdown list to proceed.")
 
 
 with col2:
