@@ -44,26 +44,26 @@ def get_data():
            gdf = gpd.read_file(geojson_path)
            return df, gdf
     except Exception as e:
+            st.error(f"Error loading data: {e}")
             return None, None
 population_data, geodata = get_data()
 
 # Validating population_data
-# if population_data is not None:
+if population_data is not None:
 
 # Dropdown menu for selecting a country
-country_list = population_data["Country/Territory"].unique()
-selected_country = st.selectbox(
+    country_list = population_data["Country/Territory"].unique()
+    selected_country = st.selectbox(
     label="Select a country",
     options=["Type country's name here"] + list(country_list)
     )
-# else:
-# st.error("Error: Population data is not available. Please check the data source.")
+else:
+    st.error("Error: Population data is not available. Please check the data source.")
     # The condition below will display the population dataframe to confirm if it is not None
     # if population_data is not None:
     #     st.dataframe(population_data)
     # else:
     #     st.write("Fetching data...")
-
 
 
 if selected_country is not None and selected_country != "Type country's name here":
