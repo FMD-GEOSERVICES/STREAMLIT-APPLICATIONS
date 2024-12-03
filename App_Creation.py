@@ -30,6 +30,10 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
+# Text widgets
+st.text("Please choose a country to explore its population data and geographical information:")
+
+
 #Fetching world population data from File directory
 @st.cache_data
 def get_data():
@@ -43,15 +47,6 @@ def get_data():
             return None, None
 population_data, geodata = get_data()
 
-    # The condition below will display the population dataframe
-    # if population_data is not None:
-    #     st.dataframe(population_data)
-    # else:
-    #     st.write("Fetching data...")
-
-# Text widgets
-st.text("Please choose a country to explore its population data and geographical information:")
-
 # Validating population_data
 if population_data is None or population_data.empty:
     st.error("Error: Population data is not available. Please check the data source.")
@@ -62,6 +57,13 @@ country_list = population_data["Country/Territory"].unique()
 selected_country = st.selectbox(
         "Select a country", ["Type country's name here"] + list(country_list)
             )
+
+    # The condition below will display the population dataframe
+    # if population_data is not None:
+    #     st.dataframe(population_data)
+    # else:
+    #     st.write("Fetching data...")
+
 
 # Creating two columns
 col1, col2 = st.columns([1, 1])
