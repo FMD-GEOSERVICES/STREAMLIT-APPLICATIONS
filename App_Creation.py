@@ -37,8 +37,8 @@ st.text("Please choose a country to explore its population data and geographical
 #Fetching world population data from File directory
 @st.cache_data
 def get_data():
-    csv_file_path = f"D:\\Users\\ALIENWARE\\Downloads\\World_Population_Data.csv"
-    geojson_path = f"D:\\Users\\ALIENWARE\\Downloads\\World countries and states.geojson"
+    csv_file_path = f"C:\\Users\\FMD GEO-SERVICES\\Desktop\\Streamlit_Apps\\World_Population_Data.csv"
+    geojson_path = f"C:\\Users\\FMD GEO-SERVICES\\Desktop\\Streamlit_Apps\\World countries and states.geojson"
     try:
            df = pd.read_csv(csv_file_path, encoding="ISO-8859-1")
            gdf = gpd.read_file(geojson_path)
