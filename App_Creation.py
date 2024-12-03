@@ -64,16 +64,22 @@ else:
     # else:
     #     st.write("Fetching data...")
 
+
+
+if selected_country is not None and selected_country != "Type country's name here":
+
+# Filtering data for the selected country
+    country_data = population_data[population_data["Country/Territory"] == selected_country].iloc[0]    
+else:
+    st.warning("No country selected")
+
 # Creating two columns
 col1, col2 = st.columns([1, 1])
 
-# if selected_country is not None and selected_country != "Type country's name here":
-
-# Filtering data for the selected country
-country_data = population_data[population_data["Country/Territory"] == selected_country].iloc[0]
-    
 # Column 1: Country Statistics
 with col1:
+    if selected_country is not None and selected_country != "Type country's name here":
+        country_data = population_data[population_data["Country/Territory"] == selected_country].iloc[0]
         st.subheader("Country's Statistics")
         st.write(f"**Country:** {country_data['Country/Territory']}")
         st.write(f"**Continent:** {country_data['Continent']}")
@@ -81,8 +87,8 @@ with col1:
         st.write(f"**Area:** {country_data['Area (km²)']} km²")
         st.write(f"**Population:** {country_data['World Population Percentage']:.2f}%")
         st.write(f"**Density:** {country_data['Density (per km²)']} per km²")
-# else:
-#     st.warning("Please select a country from the dropdown list to proceed.")
+    else:
+        st.warning("Please select a country from the dropdown list to proceed.")
 
 
 with col2:
@@ -95,19 +101,19 @@ with col2:
     selected_years = st.multiselect(
             "Select year to view population data:",
             available_years
-        )
+)
 
 # Calling the selected Country's map in Column 1
 with col1:
 # Selected Country's map
     st.subheader("Country Map")
-map = folium.Map()
+    map = folium.Map()
 if selected_country is not None and selected_country != "Type country's name here":
     selected_geometry = geodata[geodata['admin'] == selected_country]
     folium.GeoJson(data = selected_geometry).add_to(map)
 
-selected_geometry = geodata[geodata['admin'] == selected_country]
-if not selected_geometry.empty:
+    selected_geometry = geodata[geodata['admin'] == selected_country]
+    if not selected_geometry.empty:
         if selected_geometry.geometry.notnull().any():
                 
 # Initializing Folium map centered on the selected country
@@ -137,13 +143,13 @@ if not selected_geometry.empty:
                 bounds = selected_geometry.total_bounds
                 country_map.fit_bounds([[bounds[1], bounds[0]], [bounds[3], bounds[2]]])
                 st_folium(country_map)
-else:
+    else:
         st.warning(f"**Geometry** data for {"Country"} is invalid or missing.", icon="⚠️")
         
 # Show population data for selected years
-with col2:
-    if selected_years is not None and selected_country != "Type country's name here":
-        population_data = {year: country_data[year] for year in selected_years}
+    with col2:
+        if selected_years is not None and selected_country != "Type country's name here":
+            population_data = {year: country_data[year] for year in selected_years}
 
         with col2:
 # Bar Chart
@@ -156,8 +162,8 @@ with col2:
         # I can also use st.write for a subheader i the same manner with markdown using ###
         # st.write("### Population Over Selected Years")
         # or
-        st.subheader("Population Over Selected Years")
-        st.bar_chart(
+            st.subheader("Population Over Selected Years")
+            st.bar_chart(
               chart_data.set_index("Year"),
               color = "#FFD700"
-            )
+                )
