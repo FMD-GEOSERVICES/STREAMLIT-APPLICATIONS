@@ -131,7 +131,7 @@ if selected_country is not None and selected_country != "Type country's name her
                                 zoom_start=5.5,
                     )
         with col1:
-# Add selected country to the map
+# Adding selected country to the map
                 folium.GeoJson(
                     data = selected_geometry,
                     name = "Selected Country",
@@ -153,7 +153,7 @@ if selected_country is not None and selected_country != "Type country's name her
     else:
         st.warning(f"**Geometry** data for {"Country"} is invalid or missing.", icon="⚠️")
         
-# Show population data for selected years
+# Showing population data for selected years
     with col2:
         if selected_years is not None and selected_country != "Type country's name here":
             population_data = {year: country_data[year] for year in selected_years}
@@ -165,7 +165,7 @@ if selected_country is not None and selected_country != "Type country's name her
             "Population": list(population_data.values())
         })
 
-# Display the bar chart
+# Displaying the bar chart
         # I can also use st.write for a subheader i the same manner with markdown using ###
         # st.write("### Population Over Selected Years")
         # or
