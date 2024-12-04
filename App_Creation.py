@@ -4,6 +4,8 @@ import geopandas as gpd
 import folium
 import streamlit_folium as sf
 from streamlit_folium import st_folium
+import matplotlib.pyplot as plt
+from fpdf import FPDF
 
 #Page configuration
 st.set_page_config(
@@ -25,7 +27,6 @@ st.markdown (
 #Credit 
 st.markdown(
     """<div style="text-align: center;">
-        <i>(Created by FMD GEO-SERVICES🌍)</i>
     </div>
     """, unsafe_allow_html=True
 )
@@ -174,3 +175,47 @@ if selected_country is not None and selected_country != "Type country's name her
               chart_data.set_index("Year"),
               color = "#FFD700"
                 )
+
+# Footer Section
+def footer():
+    st.markdown(
+        """
+        <style>
+        .footer {
+            font-family: Times New Roman, sans-serif;
+            text-align: center;
+            position: relative; /* Ensures it stays at the bottom of the content */
+            width: 100%;
+            background-color: #f1f1f1;
+            padding: 10px;
+            color: black;
+            margin-top: 20px; /* Adds space above the footer */
+        }
+        .footer-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        </style>
+        <div class="footer">
+            <div>
+                <p>FMD GE🌍-SERVICES.  All rights reserved.</p>
+                <p>© 2024</p>
+                <div class="footer-links">
+                    <a href="https://x.com/Fmd4real" target="_blank">Twitter</a> | 
+                    <a href="www.linkedin.com/in/feyisetan-michael-fmdgeoservices" target="_blank">LinkedIn</a> | 
+                    <a href="https://github.com/FMD-GEOSERVICES" target="_blank">GitHub</a>
+                </div>
+                <p><b>Contact us:</b> <a href="mailto:fmdgeoservices@gmail.com">fmdgeoservices@gmail.com</a></p>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+# Call the footer function
+footer()
+
