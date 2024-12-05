@@ -4,8 +4,6 @@ import geopandas as gpd
 import folium
 import streamlit_folium as sf
 from streamlit_folium import st_folium
-import matplotlib.pyplot as plt
-from fpdf import FPDF
 
 #Page configuration
 st.set_page_config(
